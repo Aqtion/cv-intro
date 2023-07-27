@@ -96,6 +96,7 @@ def draw_lanes(img, lanes, color=(255, 0, 0)):
 
     return img
 
+
 def draw_lane(img, lane, color=(255, 0, 0)):
     for line in lane:
         x1, y1, x2, y2 = line
