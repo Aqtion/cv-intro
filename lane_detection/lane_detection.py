@@ -8,12 +8,11 @@ def detect_lines(
 ):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # convert to grayscale
     edges = cv2.Canny(gray, threshold1, threshold2, apertureSize)  # detect edges
-    plt.imshow(edges)
     lines = cv2.HoughLinesP(
         edges,
         rho=1,
         theta=np.pi / 180,
-        threshold=125,
+        threshold=180,
         minLineLength=minLineLength,
         maxLineGap=maxLineGap,
     )
@@ -113,7 +112,7 @@ def get_center_lane(lanes):
         line2 = lane[1]
         x_int1 = line1[0]
         x_int2 = line2[0]
-        int_diff = x_int2 - x_int1
+        int_diff = abs(x_int2 - x_int1)
         if int_width < int_diff:
             int_width = int_diff
             center_lane = lane
